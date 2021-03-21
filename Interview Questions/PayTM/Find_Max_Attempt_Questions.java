@@ -34,9 +34,8 @@ public class Find_Max_Attempt_Questions {
      * where key is Candidate & Value is no. of questions attempted by candidate in a exam.
      * Further it calls find_max_score method for further calculations
      *
-     *
      * @param candidate Array which contains information of Candidate attempting questions in exam
-     * @return  Candidate with Max Attempt in a Exam
+     * @return Candidate with Max Attempt in a Exam
      * @author Chirag Gupta
      */
     protected static String find_max_attempt_candidate(String[] candidate) {
@@ -62,11 +61,10 @@ public class Find_Max_Attempt_Questions {
      * find_max_score This function finds the candidate with max score and calls
      * tie_breaker_result in case of Tie.
      *
-     *
      * @param candidate_score HashMap which contains information of Unique Candidate Score
-     * @param candidate Array which contains information of Candidate attempting questions in exam
+     * @param candidate       Array which contains information of Candidate attempting questions in exam
      * @return
-     *  @author Chirag Gupta
+     * @author Chirag Gupta
      */
     protected static String find_max_score(HashMap<String, Integer> candidate_score, String[] candidate) {
         int highest_score = 0;
@@ -83,9 +81,8 @@ public class Find_Max_Attempt_Questions {
 //        System.out.println("Highest Score: " + highest_score);
 //        System.out.println("Tie Breaker: " + tie_breaker_flag);
         if (tie_breaker_flag == true) {
-         result = tie_breaker_result(candidate_score, candidate, highest_score);
-        }
-        else {
+            result = tie_breaker_result(candidate_score, candidate, highest_score);
+        } else {
             for (Map.Entry<String, Integer> entry : candidate_score.entrySet()) {
                 if (entry.getValue().equals(highest_score)) {
                     result = entry.getKey();
@@ -93,7 +90,7 @@ public class Find_Max_Attempt_Questions {
                 }
             }
         }
-            return result;
+        return result;
     }
 
 
@@ -101,23 +98,22 @@ public class Find_Max_Attempt_Questions {
      * tie_breaker_result This function finds the candidate with quickest last question attempted
      * in case of tie. It calls find_tie_candidates to get List of Tie Breakers Candidates
      *
-     *
      * @param candidate_score HashMap which contains information of Unique Candidate Score
-     * @param candidate Array which contains information of Candidate attempting questions in exam
-     * @param heighest_score Contains the value of heighest number of questions attempted by any candidate
+     * @param candidate       Array which contains information of Candidate attempting questions in exam
+     * @param heighest_score  Contains the value of heighest number of questions attempted by any candidate
      * @return Tie Breaker Winner
      * @author Chirag Gupta
      */
     protected static String tie_breaker_result(HashMap<String, Integer> candidate_score, String[] candidate, int heighest_score) {
         List<String> tie_candidates = find_tie_candidates(candidate_score, heighest_score);
-       // System.out.println(Arrays.toString(tie_candidates.toArray()));
-        for(int i = candidate.length-1; i >= 0; i--){
-            if(tie_candidates.contains(candidate[i])){
+        // System.out.println(Arrays.toString(tie_candidates.toArray()));
+        for (int i = candidate.length - 1; i >= 0; i--) {
+            if (tie_candidates.contains(candidate[i])) {
                 tie_candidates.remove(candidate[i]);
             }
-             if(tie_candidates.size() <= 1) {
-                 break;
-             }
+            if (tie_candidates.size() <= 1) {
+                break;
+            }
         }
         String tie_winner = tie_candidates.get(0);
         //System.out.println("Tie Breaker Result: " +tie_winner);
@@ -127,9 +123,8 @@ public class Find_Max_Attempt_Questions {
     /**
      * find_tie_candidates This function finds the list of Tie Breakers Candidate
      *
-     *
      * @param candidate_score HashMap which contains information of Unique Candidate Score
-     * @param heighest_score Contains the value of heighest number of questions attempted by any candidate
+     * @param heighest_score  Contains the value of heighest number of questions attempted by any candidate
      * @return The List of Tie Breakers Candidates
      * @author Chirag Gupta
      */
@@ -142,7 +137,7 @@ public class Find_Max_Attempt_Questions {
                 tie_candidate.add(entry.getKey());
             }
         }
-        System.out.println("Tie List: "+Arrays.toString(tie_candidate.toArray()));
+        System.out.println("Tie List: " + Arrays.toString(tie_candidate.toArray()));
         return tie_candidate;
     }
 
@@ -154,6 +149,6 @@ public class Find_Max_Attempt_Questions {
     public static void main(String... args) {
         String[] candidate = {"A", "A", "B", "B", "A", "D", "C", "E",
                 "C", "C", "A", "B", "B", "C", "C", "E", "E", "E", "F", "F", "B", "E"};
-        System.out.println("Candidate with Max Attempts: " +find_max_attempt_candidate(candidate));
+        System.out.println("Candidate with Max Attempts: " + find_max_attempt_candidate(candidate));
     }
 }
