@@ -3,6 +3,7 @@ package Easy;
 
 
 //Leetcode: 1876
+//Easy
 public class SubstringswithDistinctCharacters {
 
     //Sliding Window Algorithm
